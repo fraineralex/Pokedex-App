@@ -14,6 +14,8 @@ namespace Database.Models
 
         public string? ImagePath { get; set; }
 
+        // Foreign key fields
+
         public int RegionId { get; set; }
 
         public int PrimaryTypeId { get; set; }

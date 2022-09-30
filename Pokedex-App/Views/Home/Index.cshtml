@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Application.ViewModels
+@model List<Application.ViewModels.PokemonViewModel>
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -25,15 +27,26 @@
 
 <div class="row">
 
-    <div class="col-4 mb-4">
-        <div class="card bg-light bg-opacity-50 border border-2 effect card-2">
-            <img src="https://assets.pokemon.com/assets//cms2/img/video-games/_tiles/pokemon-unite/09282022/pokemon-unite-169.jpg" class="card-img-top" style="width: auto; max-height: 50%" alt="book" />
-            <div class="card-body mt-2">
-                <h4 class="card-title text-center text-primary">Pikachu </h4>
-                <p class="fw-light mt-4"><strong>Region: </strong> Kanto</p>
-                <p class="fw-light"><strong>Tipo: </strong> Fuego</p>
+    @if(Model == null || Model.Count == 0)
+    {
+        <h1 class="text-center fw-light mb-3 mt-3">Lo sentimos :(</h1>
+        <h5 class="text-center lead text-muted">No se ha encontrado ningún pokemon.</h5>
+    }else
+    {
+        @foreach(PokemonViewModel pokemon in Model)
+        {
+            <div class="col-4 mb-4">
+                <div class="card card-light bg-opacity-75 shadow-sm">
+                    <img src="@pokemon.ImagePath" class="card-img-top bd-placeholder-img" alt="pokemon img"/>
+                    <div class="card-body">
+                        <h2 class="card-title text-center fw-bold mb-3">@pokemon.Name</h2>
+                        <p><i class="fw-bold m-0">Region: </i> Kanto</p>
+                        <p><i class="fw-bold m-0">Tipo primario: </i> Fuego</p>
+                        <p><i class="fw-bold m-0">Tipo secundario: </i> Agua</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 
 </div>

@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<form method="POST" action="/filter-pokemons">
+    <div class="card mt-2 position-absolute end-0" style="width: 20rem;">
+        <select class="form-select" name="Filter" onchange="this.form.submit()">
+            <option value="" selected disabled>Filtrar por Región</option>
+            <option value="1">Kanto</option>
+        </select>
+    </div>
+</form>
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Pokedex App</h1>
+            <p class="lead text-muted">
+                Encuentra tu pokemon favorito entre toda la variedad
+                de pokemones de diferentes tipos y regiones mostrados a continuación.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+
+    <div class="col-4 mb-4">
+        <div class="card bg-light bg-opacity-50 border border-2 effect card-2">
+            <img src="https://assets.pokemon.com/assets//cms2/img/video-games/_tiles/pokemon-unite/09282022/pokemon-unite-169.jpg" class="card-img-top" style="width: auto; max-height: 50%" alt="book" />
+            <div class="card-body mt-2">
+                <h4 class="card-title text-center text-primary">Pikachu </h4>
+                <p class="fw-light mt-4"><strong>Region: </strong> Kanto</p>
+                <p class="fw-light"><strong>Tipo: </strong> Fuego</p>
+            </div>
+        </div>
+    </div>
+
+</div>

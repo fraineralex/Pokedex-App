@@ -16,3 +16,15 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.profile-image img {
+    height: 120%;
+    width: 80%;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.img-pokemon{
+    height: 300px;
+}

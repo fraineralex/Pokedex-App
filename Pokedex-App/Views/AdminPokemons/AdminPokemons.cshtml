@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Application.ViewModels
+@model List<Application.ViewModels.PokemonViewModel>
+@{
     ViewData["Title"] = "Admin Regions";
 }
 
@@ -11,8 +13,44 @@
                 caracteristicas que quieras, deja que fluya tu imaginación.
             </p>
             <p>
-                <a href="/create-pokemon" class="btn btn-primary my-2">Crea un nuevo pokemon</a>
+                <a asp-controller="Adminpokemons" asp-action="Create" class="btn btn-primary my-2">Crea un nuevo pokemon</a>
             </p>
         </div>
     </div>
 </section>
+
+<div class="row">
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <h1 class="text-center fw-light mb-3 mt-3">Lo sentimos :(</h1>
+        <h5 class="text-center lead text-muted">No se ha encontrado ningún pokemon.</h5>
+    }
+    else
+    {
+        @foreach (PokemonViewModel pokemon in Model)
+        {
+            <div class="col-4 mb-4">
+                <div class="card card-light bg-opacity-75 shadow-sm">
+                    <img src="@pokemon.ImagePath" class="card-img-top bd-placeholder-img img-pokemon" alt="pokemon img" />
+                    <div class="card-body">
+                        <h2 class="card-title text-center fw-bold mb-3">@pokemon.Name</h2>
+                        <p><i class="fw-bold m-0">Region: </i> Kanto</p>
+                        <p><i class="fw-bold m-0">Tipo primario: </i> Fuego</p>
+                        <p><i class="fw-bold m-0">Tipo secundario: </i> Agua</p>
+
+                        <a asp-controller="AdminPokemons" asp-action="Delete" asp-route-id="@pokemon.Id" class="btn btn-danger float-end">
+                            <i class='bx bxs-trash'></i>
+                        </a>
+
+                        <a asp-controller="AdminPokemons" asp-action="Edit" asp-route-id="@pokemon.Id" class="btn btn-primary float-end me-2">
+                            <i class='bx bxs-edit'></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>

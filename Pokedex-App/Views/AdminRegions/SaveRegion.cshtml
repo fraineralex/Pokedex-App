@@ -1,0 +1,31 @@
+﻿@model Application.ViewModels.RegionViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Register Region";
+}
+
+<form class="row g-3 needs-validation py-5 mt-2" method="POST" asp-controller="AdminRegions" asp-action="@(editMode ? "Edit" : "Create")">
+    <div class="col-6 m-md-auto mt-5">
+        <div class="card mb-5">
+            <div class="card-header bg-black text-white">
+                <h4 class="text-center">@(editMode ? $"Editando la región: {Model.Name}" : "Creando una nueva región")</h4>
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h4 class="text-center mb-4">Rellene el campo mostrado continuación</h4>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"><strong>Nombre</strong></label>
+                    <input type="text" class="form-control" asp-for="Name" name="Name" required>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-primary float-end mt-2 ms-2">@(editMode ? "Actualizar" : "Registrar")</button>
+                <a asp-controller="AdminRegion" asp-action="Index" class="btn btn-dark float-end mt-2">Regresar</a>
+            </div>
+        </div>
+    </div>
+</form>

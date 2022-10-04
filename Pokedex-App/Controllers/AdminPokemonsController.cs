@@ -8,15 +8,21 @@ namespace Pokedex_App.Controllers
     public class AdminPokemonsController : Controller
     {
         private readonly PokemonService _pokemonService;
+        private readonly RegionService _regionService;
+        private readonly PokemonTypeService _pokemonTypeService;
+        private readonly EntitiesService _entitiesService;
 
         public AdminPokemonsController(ApplicationContext dbContext)
         {
             _pokemonService = new(dbContext);
+            _regionService = new(dbContext);
+            _pokemonTypeService = new(dbContext);
+            _entitiesService = new(dbContext);
         }
 
         public async Task<IActionResult> Index()
         {
-            return View("AdminPokemons", await _pokemonService.GetAllViewModel());
+            return View("AdminPokemons", await _entitiesService.GetEntitiesViewModel());
         }
 
         public IActionResult Create()

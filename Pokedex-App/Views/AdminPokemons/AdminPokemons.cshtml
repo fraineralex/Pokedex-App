@@ -1,5 +1,4 @@
-﻿@using Application.ViewModels
-@model List<Application.ViewModels.PokemonViewModel>
+﻿@model Application.ViewModels.EntitiesViewModel
 @{
     ViewData["Title"] = "Admin Regions";
 }
@@ -21,23 +20,23 @@
 
 <div class="row">
 
-    @if (Model == null || Model.Count == 0)
+    @if (Model == null || Model.PokemonList.Count == 0)
     {
         <h1 class="text-center fw-light mb-3 mt-3">Lo sentimos :(</h1>
         <h5 class="text-center lead text-muted">No se ha encontrado ningún pokemon.</h5>
     }
     else
     {
-        @foreach (PokemonViewModel pokemon in Model)
+        @foreach (var pokemon in Model.PokemonList)
         {
             <div class="col-4 mb-4">
                 <div class="card card-light bg-opacity-75 shadow-sm">
                     <img src="@pokemon.ImagePath" class="card-img-top bd-placeholder-img img-pokemon" alt="pokemon img" />
                     <div class="card-body">
                         <h2 class="card-title text-center fw-bold mb-3">@pokemon.Name</h2>
-                        <p><i class="fw-bold m-0">Region: </i> Kanto</p>
-                        <p><i class="fw-bold m-0">Tipo primario: </i> Fuego</p>
-                        <p><i class="fw-bold m-0">Tipo secundario: </i> Agua</p>
+                        <p><i class="fw-bold m-0">Region: </i> @pokemon.Region</p>
+                        <p><i class="fw-bold m-0">Tipo primario: </i> @pokemon.TypePrimary</p>
+                        <p><i class="fw-bold m-0">Tipo secundario: </i> @pokemon.TypeSecondary</p>
 
                         <a asp-controller="AdminPokemons" asp-action="Delete" asp-route-id="@pokemon.Id" class="btn btn-danger float-end">
                             <i class='bx bxs-trash'></i>

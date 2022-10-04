@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/">Inicio</a>
+                        <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="Index">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page"
@@ -23,11 +23,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page"
-              asp-controller="AdminRegions" asp-action="AdminRegions">Regiones</a>
+                           asp-controller="AdminRegions" asp-action="Index">Regiones</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page"
-                asp-controller="AdminPokemonTypes" asp-action="AdminPokemonTypes">Tipos de
+                           asp-controller="AdminPokemonTypes" asp-action="Index">
+                            Tipos de
               pokemones</a>
           </li>
         </ul>

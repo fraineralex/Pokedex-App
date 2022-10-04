@@ -20,6 +20,10 @@ namespace Application.ViewModels
         public int PrimaryTypeId { get; set; }
         [Required(ErrorMessage = "Debe ingresar el tipo secundario del pokemon")]
         public int SecondaryTypeId { get; set; }
+
+        public List<RegionViewModel>? RegionList { get; set; }
+
+        public List<PokemonTypeViewModel>? PokemonTypeList { get; set; }
     }
 
 }

@@ -25,5 +25,6 @@ namespace Database.Models
         //Navigation property
         public Regions? Regions { get; set; }
         public PokemonTypes? PokemonTypes { get; set; }
+        //public object Region { get; set; }
     }
 }

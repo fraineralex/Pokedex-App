@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Application.ViewModels
+@model List<Application.ViewModels.PokemonTypeViewModel>
+@{
     ViewData["Title"] = "Admin Regions";
 }
 
@@ -11,8 +13,38 @@
                 puedes consultar todos los que quieras o incluso crear uno propia.
             </p>
             <p>
-                <a href="/create-type" class="btn btn-primary my-2">Crea un nuevo tipo de pokemon</a>
+                <a asp-controller="AdminPokemonTypes" asp-action="Create" class="btn btn-primary my-2">Crear tipo de pokemon</a>
             </p>
         </div>
     </div>
 </section>
+
+<div class="row">
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <h1 class="text-center fw-light mb-3 mt-3">Lo sentimos :(</h1>
+        <h5 class="text-center lead text-muted">No se ha encontrado ningun tipo de pokemon.</h5>
+    }
+    else
+    {
+        @foreach (PokemonTypeViewModel pokemonType in Model)
+        {
+            <div class="col mb-4">
+                <div class="card bg-light" style="width: 18rem; height: auto">
+                    <div class="card-body">
+                        <h5 class="card-title mb-2">@pokemonType.Name</h5>
+                        <a asp-controller="AdminPokemonTypes" asp-action="Delete" asp-route-id="@pokemonType.Id" class="btn btn-danger float-end">
+                            <i class='bx bxs-trash'></i>
+                        </a>
+
+                        <a asp-controller="AdminPokemonTypes" asp-action="Edit" asp-route-id="@pokemonType.Id" class="btn btn-primary float-end me-2">
+                            <i class='bx bxs-edit'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>

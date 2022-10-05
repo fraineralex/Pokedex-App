@@ -31,9 +31,10 @@
                     <label asp-for="RegionId" class="form-label"><strong>Región perteneciente</strong></label>
                     <select class="form-select" asp-for="RegionId" name="RegionId" required>
                         <option selected disabled>Selecciona una región</option>
-                        <option value="1">Kanto</option>
-                        <option value="2">San Juan</option>
-
+                        @foreach (var region in Model.RegionList)
+                        {
+                            <option value="@region.Id">@region.Name</option>
+                        }
                     </select>
                     <span asp-validation-for="RegionId" class="text-danger"></span>
                 </div>
@@ -42,9 +43,12 @@
                     <label asp-for="PrimaryTypeId" class="form-label"><strong>Tipo primario</strong></label>
                     <select class="form-select" asp-for="PrimaryTypeId" name="PrimaryTypeId" required>
                         <option selected disabled>Selecciona un tipo</option>
-                        <option value="1">Fuego</option>
-                        <option value="2">Agua</option>
+                        @foreach (var pokemonType in Model.PokemonTypeList)
+                        {
 
+                            <option value="@pokemonType.Id">@pokemonType.Name</option>
+                            
+                        }
                     </select>
                     <span asp-validation-for="PrimaryTypeId" class="text-danger"></span>
                 </div>
@@ -53,9 +57,12 @@
                     <label asp-for="SecondaryTypeId" class="form-label"><strong>Tipo secundario</strong></label>
                     <select class="form-select" asp-for="SecondaryTypeId" name="SecondaryTypeId" required>
                         <option selected disabled>Selecciona un tipo</option>
-                        <option value="1">Fuego</option>
-                        <option value="2">Agua</option>
+                        @foreach (var pokemonType in Model.PokemonTypeList)
+                        {
 
+                            <option value="@pokemonType.Id">@pokemonType.Name</option>
+
+                        }
                     </select>
                     <span asp-validation-for="SecondaryTypeId" class="text-danger"></span>
                 </div>

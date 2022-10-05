@@ -15,11 +15,11 @@ namespace Application.Services
         private readonly RegionService _regionService;
         private readonly PokemonTypeService _pokemonTypeService;
 
-        public EntitiesService(ApplicationContext DbContext)
+        public EntitiesService(ApplicationContext dbContext)
         {
-            _pokemonService = new PokemonService(DbContext);
-            _regionService = new RegionService(DbContext);
-            _pokemonTypeService = new PokemonTypeService(DbContext);
+            _pokemonService = new PokemonService(dbContext);
+            _regionService = new RegionService(dbContext);
+            _pokemonTypeService = new PokemonTypeService(dbContext);
         }
 
         public async Task<EntitiesViewModel> GetEntitiesViewModel()

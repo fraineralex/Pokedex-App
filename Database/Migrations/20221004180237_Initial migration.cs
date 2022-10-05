@@ -54,7 +54,7 @@ namespace Database.Migrations
                         column: x => x.PrimaryTypeId,
                         principalTable: "PokemonTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Pokemons_PokemonTypes_SecondaryTypeId",
                         column: x => x.SecondaryTypeId,
@@ -75,14 +75,14 @@ namespace Database.Migrations
                 column: "RegionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pokemons_PrimaryTypeId",
-                table: "Pokemons",
-                column: "PrimaryTypeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Pokemons_SecondaryTypeId",
                 table: "Pokemons",
                 column: "SecondaryTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pokemons_PrimaryTypeId",
+                table: "Pokemons",
+                column: "PrimaryTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -13,10 +13,14 @@ namespace Application.Services
     public class PokemonService
     {
         private readonly PokemonRepository _pokemonRepository;
+        private readonly RegionService _regionService;
+        private PokemonTypeService _pokemonTypeService;
 
         public PokemonService(ApplicationContext dbContext)
         {
             _pokemonRepository = new(dbContext);
+            _regionService = new(dbContext);
+            _pokemonTypeService = new(dbContext);
         }
 
         public async Task<List<PokemonViewModel>> GetAllViewModel()
@@ -27,7 +31,7 @@ namespace Application.Services
                 Id = pokemon.Id,
                 Name = pokemon.Name,
                 ImagePath = pokemon.ImagePath,
-
+                
             }).ToList();
         }
 
@@ -44,7 +48,7 @@ namespace Application.Services
 
         public async Task<SavePokemonViewModel> GetByIdSaveViewModel(int id)
         {
-            var pokemon = await _pokemonRepository.GetByIdAsync(id);
+            var pokemon = await GetPokemonById(id);
 
             SavePokemonViewModel vm = new();
             vm.Id = pokemon.Id;
@@ -53,6 +57,8 @@ namespace Application.Services
             vm.RegionId = pokemon.RegionId;
             vm.PrimaryTypeId = pokemon.PrimaryTypeId;
             vm.SecondaryTypeId = pokemon.SecondaryTypeId;
+            vm.PokemonTypeList = await _pokemonTypeService.GetAllViewModel();
+            vm.RegionList = await _regionService.GetAllViewModel();
 
             return vm;
         }
@@ -74,6 +80,23 @@ namespace Application.Services
         {
             var pokemon = await _pokemonRepository.GetByIdAsync(id);
             await _pokemonRepository.DeleteAsync(pokemon);
+        }
+
+        public async Task<SavePokemonViewModel> GetPokemonById(int id)
+        {
+            var pokemon = await _pokemonRepository.GetByIdAsync(id);
+
+            SavePokemonViewModel vm = new()
+            {
+                Id = pokemon.Id,
+                Name = pokemon.Name,
+                ImagePath = pokemon.ImagePath,
+                RegionId = pokemon.RegionId,
+                PrimaryTypeId = pokemon.PrimaryTypeId,
+                SecondaryTypeId = pokemon.SecondaryTypeId
+            };
+
+            return vm;
         }
 
     }

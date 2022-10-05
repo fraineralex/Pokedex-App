@@ -62,5 +62,16 @@ namespace Application.Services
             var region = await _regionRepository.GetByIdAsync(id);
             await _regionRepository.DeleteAsync(region);
         }
+
+        public async Task<RegionViewModel> GetRegionById(int id)
+        {
+            var region = await _regionRepository.GetByIdAsync(id);
+
+            RegionViewModel vm = new();
+            vm.Id = region.Id;
+            vm.Name = region.Name;
+
+            return vm;
+        }
     }
 }

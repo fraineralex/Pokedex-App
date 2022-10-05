@@ -12,9 +12,9 @@ namespace Database
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
-        public DbSet<Pokemons> Pokemons { get; set; }
-        public DbSet<Regions> Regions { get; set; }
-        public DbSet<PokemonTypes> PokemonTypes { get; set; }
+        public DbSet<Pokemons>? Pokemons { get; set; }
+        public DbSet<Regions>? Regions { get; set; }
+        public DbSet<PokemonTypes>? PokemonTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,7 @@ namespace Database
                 .HasMany<Pokemons>(pokemonTypes => pokemonTypes.Pokemons)
                 .WithOne(pokemon => pokemon.PokemonTypes)
                 .HasForeignKey(pokemon => pokemon.PrimaryTypeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<PokemonTypes>()
                 .HasMany<Pokemons>(pokemonTypes => pokemonTypes.Pokemons)
@@ -62,6 +62,14 @@ namespace Database
 
             modelBuilder.Entity<Pokemons>()
                 .Property(pokemon => pokemon.ImagePath)
+                .IsRequired();
+
+            modelBuilder.Entity<Pokemons>()
+                .Property(pokemon => pokemon.RegionId)
+                .IsRequired();
+
+            modelBuilder.Entity<Pokemons>()
+                .Property(pokemon => pokemon.PrimaryTypeId)
                 .IsRequired();
             #endregion
 

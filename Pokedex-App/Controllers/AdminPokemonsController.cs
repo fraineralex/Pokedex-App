@@ -25,9 +25,13 @@ namespace Pokedex_App.Controllers
             return View("AdminPokemons", await _entitiesService.GetEntitiesViewModel());
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View("SavePokemon", new SavePokemonViewModel());
+            return View("SavePokemon", new SavePokemonViewModel()
+            {
+                RegionList = await _regionService.GetAllViewModel(),
+                PokemonTypeList = await _pokemonTypeService.GetAllViewModel()
+            });
         }
 
         [HttpPost]
@@ -35,6 +39,8 @@ namespace Pokedex_App.Controllers
         {
             if (!ModelState.IsValid)
             {
+                vm.RegionList = await _regionService.GetAllViewModel();
+                vm.PokemonTypeList = await _pokemonTypeService.GetAllViewModel();
                 return View("SavePokemon", vm);
             }
 
@@ -44,6 +50,7 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+
             return View("SavePokemon", await _pokemonService.GetByIdSaveViewModel(id));
         }
 
@@ -52,6 +59,8 @@ namespace Pokedex_App.Controllers
         {
             if (!ModelState.IsValid)
             {
+                vm.RegionList = await _regionService.GetAllViewModel();
+                vm.PokemonTypeList = await _pokemonTypeService.GetAllViewModel();
                 return View("SavePokemon", vm);
             }
 

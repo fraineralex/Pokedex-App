@@ -4,15 +4,20 @@
     ViewData["Title"] = "Home";
 }
 
-<form method="POST" action="/filter-pokemons">
-    <div class="card mt-2 position-absolute end-0" style="width: 20rem;">
-        <select class="form-select" name="Filter" onchange="this.form.submit()">
-            <option value="" selected disabled>Filtrar por Región</option>
-            <option value="1">Kanto</option>
-        </select>
-    </div>
-</form>
-
+@if (Model != null && Model.Count != 0)
+{
+    <form method="POST" asp-controller="Home" asp-action="Index">
+        <div class="card mt-2 position-absolute end-0" style="width: 20rem;">
+            <select class="form-select" onchange="this.form.submit()" name="RegionId">
+                <option selected disabled>Filtrar por Región</option>
+                @foreach (var region in ViewBag.RegionList)
+                {
+                    <option value="@region.Id">@region.Name</option>
+                }
+            </select>
+        </div>
+    </form>
+}
 <section class="py-3 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">

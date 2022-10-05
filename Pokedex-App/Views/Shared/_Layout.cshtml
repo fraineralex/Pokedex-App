@@ -10,34 +10,62 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet' asp-append-version="true" />
 </head>
 <body>
+    @{
+        bool homePage = false, adminPokemonsPage = false, adminRegionsPage = false, adminPokemonTypesPage = false;
+
+        switch(ViewBag.Page){
+            case "home": 
+                {
+                    homePage = true;
+                    break;
+                }
+            case "adminPokemons":
+                {
+                    adminPokemonsPage = true;
+                    break;
+                }
+            case "adminRegions":
+                {
+                    adminRegionsPage = true;
+                    break;
+                }
+            case "adminPokemonTypes":
+                {
+                    adminPokemonTypesPage = true;
+                    break;
+                }
+        }
+        ViewData["Title"] = "Register Pokemon";
+    }
+
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-                        <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="Index">Inicio</a>
+                        <a class="nav-link fw-bold fs-5 @(homePage ? "active" : "" )" aria-current="page" asp-controller="Home" asp-action="Index">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page"
+            <a class="nav-link fw-bold fs-5 @(adminPokemonsPage ? "active" : "" )" aria-current="page"
               asp-controller="AdminPokemons" asp-action="Index">Pokemones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page"
-                           asp-controller="AdminRegions" asp-action="Index">Regiones</a>
+            <a class="nav-link fw-bold fs-5 @(adminRegionsPage ? "active" : "" )" aria-current="page"
+                asp-controller="AdminRegions" asp-action="Index">Regiones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page"
-                           asp-controller="AdminPokemonTypes" asp-action="Index">
-                            Tipos de
-              pokemones</a>
+            <a class="nav-link fw-bold fs-5 @(adminPokemonTypesPage ? "active" : "" )" aria-current="page"
+                asp-controller="AdminPokemonTypes" asp-action="Index">Tipos de pokemones</a>
           </li>
         </ul>
-
-        <form action="/search" class="d-flex" role="search" method="post">
-          <input class="form-control me-2" type="search" name="SearchVar"
-            placeholder="Busca un pokemon..." aria-label="Search">
-          <button class="btn btn-dark border-white" type="submit">Burscar</button>
-        </form>
+        @if (ViewBag.Page == "home")
+        {
+            <form class="d-flex" role="search" method="post" asp-action="Index">
+                <input class="form-control me-2" type="search" name="PokemonName"
+                    placeholder="Busca un pokemon..." aria-label="Search" required>
+                <button class="btn btn-dark border-white" type="submit">Burscar</button>
+            </form>
+        }
 
       </div>
     </div>

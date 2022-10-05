@@ -15,7 +15,11 @@ namespace Application.ViewModels
         public string ImagePath { get; set; }
 
         public string Region { get; set; }
+
         public string TypePrimary { get; set; }
+
         public string TypeSecondary { get; set; }
+
+        public int RegionId { get; set; }
     }
 }

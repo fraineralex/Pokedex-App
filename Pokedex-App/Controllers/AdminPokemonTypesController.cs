@@ -16,11 +16,13 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Page = "adminPokemonTypes";
             return View("AdminPokemonTypes", await _pokemonTypeService.GetAllViewModel());
         }
 
         public IActionResult Create()
         {
+            ViewBag.Page = "adminPokemonTypes";
             return View("SavePokemonType", new PokemonTypeViewModel());
         }
 
@@ -38,6 +40,7 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.Page = "adminPokemonTypes";
             return View("SavePokemonType", await _pokemonTypeService.GetByIdSaveViewModel(id));
         }
 
@@ -54,6 +57,7 @@ namespace Pokedex_App.Controllers
         }
         public async Task<IActionResult> Delete(int id)
         {
+            ViewBag.Page = "adminPokemonTypes";
             return View("DeletePokemonType", await _pokemonTypeService.GetByIdSaveViewModel(id));
         }
 

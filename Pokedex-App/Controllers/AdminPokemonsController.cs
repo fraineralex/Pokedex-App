@@ -22,11 +22,13 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Page = "adminPokemons";
             return View("AdminPokemons", await _entitiesService.GetEntitiesViewModel());
         }
 
         public async Task<IActionResult> Create()
         {
+            ViewBag.Page = "adminPokemons";
             return View("SavePokemon", new SavePokemonViewModel()
             {
                 RegionList = await _regionService.GetAllViewModel(),
@@ -50,7 +52,7 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-
+            ViewBag.Page = "adminPokemons";
             return View("SavePokemon", await _pokemonService.GetByIdSaveViewModel(id));
         }
 
@@ -70,6 +72,7 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+            ViewBag.Page = "adminPokemons";
             return View("DeletePokemon", await _pokemonService.GetByIdSaveViewModel(id));
         }
 

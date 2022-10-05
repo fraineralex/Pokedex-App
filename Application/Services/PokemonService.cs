@@ -102,6 +102,38 @@ namespace Application.Services
             return vm;
         }
 
+        public async Task<List<PokemonViewModel>> GetAllViewModelWithFilters(FilterViewModel vm)
+        {
+            var pokemonList = await _pokemonRepository.GetAllAsync();
+            var pokemonViewModelList = pokemonList.Select(pokemon => new PokemonViewModel
+            {
+                Id = pokemon.Id,
+                Name = pokemon.Name,
+                ImagePath = pokemon.ImagePath,
+                Region = pokemon.Regions.Name,
+                TypePrimary = pokemon.PrimaryType.Name,
+                TypeSecondary = pokemon.SecundaryType.Name,
+                RegionId = pokemon.Regions.Id,
+
+            }).ToList();
+
+            if (vm.RegionId != null)
+            {
+                pokemonViewModelList = pokemonViewModelList
+                    .Where(pokemon => pokemon.RegionId == vm.RegionId.Value)
+                    .ToList();
+            }
+
+            if (!String.IsNullOrEmpty(vm.PokemonName))
+            {
+                pokemonViewModelList = pokemonViewModelList
+                    .Where(pokemon => pokemon.Name.Contains(vm.PokemonName))
+                    .ToList();
+            }
+
+            return pokemonViewModelList;
+        }
+
     }
 
 

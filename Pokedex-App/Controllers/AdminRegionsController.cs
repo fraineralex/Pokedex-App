@@ -16,11 +16,13 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Page = "adminRegions";
             return View("AdminRegions", await _regionService.GetAllViewModel());
         }
 
         public IActionResult Create()
         {
+            ViewBag.Page = "adminRegions";
             return View("SaveRegion", new RegionViewModel());
         }
 
@@ -38,6 +40,7 @@ namespace Pokedex_App.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.Page = "adminRegions";
             return View("SaveRegion", await _regionService.GetByIdSaveViewModel(id));
         }
 
@@ -54,6 +57,7 @@ namespace Pokedex_App.Controllers
         }
         public async Task<IActionResult> Delete(int id)
         {
+            ViewBag.Page = "adminRegions";
             return View("DeleteRegion", await _regionService.GetByIdSaveViewModel(id));
         }
 

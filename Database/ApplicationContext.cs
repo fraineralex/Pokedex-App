@@ -34,28 +34,28 @@ namespace Database
 
             #region relationships
             modelBuilder.Entity<Regions>()
-                .HasMany<Pokemons>(region => region.Pokemons)
+                .HasMany(region => region.Pokemons)
                 .WithOne(pokemon => pokemon.Regions)
                 .HasForeignKey(pokemon => pokemon.RegionId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<PokemonTypes>()
-                .HasMany<Pokemons>(pokemonTypes => pokemonTypes.Pokemons)
-                .WithOne(pokemon => pokemon.PokemonTypes)
+                .HasMany(type => type.PrimaryType)
+                .WithOne(pokemon => pokemon.PrimaryType)
                 .HasForeignKey(pokemon => pokemon.PrimaryTypeId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<PokemonTypes>()
-                .HasMany<Pokemons>(pokemonTypes => pokemonTypes.Pokemons)
-                .WithOne(pokemon => pokemon.PokemonTypes)
+                .HasMany(type => type.SecundaryType)
+                .WithOne(pokemon => pokemon.SecundaryType)
                 .HasForeignKey(pokemon => pokemon.SecondaryTypeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.SetNull);
             #endregion
 
             #region "property configurations"
 
             #region pokemons
-             modelBuilder.Entity<Pokemons>()
+            modelBuilder.Entity<Pokemons>()
                 .Property(pokemon => pokemon.Name)
                 .IsRequired()
                 .HasMaxLength(100);

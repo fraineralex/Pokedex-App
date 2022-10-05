@@ -10,12 +10,12 @@ namespace Application.ViewModels
     {
         public int Id { get; set; }
 
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
-        public string? ImagePath { get; set; }
+        public string ImagePath { get; set; }
 
-        public string? Region { get; set; }
-        public string? TypePrimary { get; set; }
-        public string? TypeSecondary { get; set; }
+        public string Region { get; set; }
+        public string TypePrimary { get; set; }
+        public string TypeSecondary { get; set; }
     }
 }

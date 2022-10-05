@@ -8,8 +8,8 @@ namespace Application.ViewModels
 {
     public class EntitiesViewModel
     {
-        public List<PokemonViewModel>? PokemonList { get; set; }
-        public List<RegionViewModel>? RegionList { get; set; }
-        public List<PokemonTypeViewModel>? PokemonTypeList { get; set; }
+        public List<PokemonViewModel> PokemonList { get; set; }
+        public List<RegionViewModel> RegionList { get; set; }
+        public List<PokemonTypeViewModel> PokemonTypeList { get; set; }
     }
 }

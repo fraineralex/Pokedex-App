@@ -13,6 +13,6 @@ namespace Database.Models
         public string Name { get; set; }
 
         //Navigation property
-        public ICollection<Pokemons>? Pokemons { get; set; }
+        public ICollection<Pokemons> Pokemons { get; set; }
     }
 }

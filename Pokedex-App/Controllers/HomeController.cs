@@ -9,17 +9,17 @@ namespace Pokedex_App.Controllers
     public class HomeController : Controller
     {
         private readonly PokemonService _pokemonService;
-        private readonly EntitiesService _entitiesService;
+        //private readonly EntitiesService _entitiesService;
 
         public HomeController(ApplicationContext dbContext)
         {
             _pokemonService = new(dbContext);
-            _entitiesService = new(dbContext);
+            //_entitiesService = new(dbContext);
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _entitiesService.GetEntitiesViewModel());
+            return View(await _pokemonService.GetAllViewModel());
         }
     }
 }

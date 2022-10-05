@@ -36,11 +36,19 @@ namespace Application.Repository
 
         public async Task<List<Pokemons>> GetAllAsync()
         {
-            return await _dbContext.Set<Pokemons>().ToListAsync();
+             return await _dbContext.Set<Pokemons>()
+            .Include(pokemon => pokemon.Regions)
+            .Include(pokemon => pokemon.PrimaryType)
+            .Include(pokemon => pokemon.SecundaryType)
+            .ToListAsync();
         }
         public async Task<Pokemons> GetByIdAsync(int id)
         {
-            return await _dbContext.Set<Pokemons>().FindAsync(id);
+             return await _dbContext.Set<Pokemons>()
+            .Include(pokemon => pokemon.Regions)
+            .Include(pokemon => pokemon.PrimaryType)
+            .Include(pokemon => pokemon.SecundaryType)
+            .FirstOrDefaultAsync(pokemon => pokemon.Id == id);
         }
     }
 }

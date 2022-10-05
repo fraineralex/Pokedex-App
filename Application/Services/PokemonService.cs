@@ -31,7 +31,10 @@ namespace Application.Services
                 Id = pokemon.Id,
                 Name = pokemon.Name,
                 ImagePath = pokemon.ImagePath,
-                
+                Region = pokemon.Regions.Name,
+                TypePrimary = pokemon.PrimaryType.Name,
+                TypeSecondary = pokemon.SecundaryType.Name,
+
             }).ToList();
         }
 

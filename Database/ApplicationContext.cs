@@ -49,7 +49,7 @@ namespace Database
                 .HasMany(type => type.SecundaryType)
                 .WithOne(pokemon => pokemon.SecundaryType)
                 .HasForeignKey(pokemon => pokemon.SecondaryTypeId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region "property configurations"
@@ -74,7 +74,7 @@ namespace Database
             #endregion
 
             #region regions
-             modelBuilder.Entity<Regions>()
+            modelBuilder.Entity<Regions>()
                 .Property(region => region.Name)
                 .IsRequired()
                 .HasMaxLength(100);

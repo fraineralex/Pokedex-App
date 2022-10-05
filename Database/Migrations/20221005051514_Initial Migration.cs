@@ -4,7 +4,7 @@
 
 namespace Database.Migrations
 {
-    public partial class Initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,7 +44,7 @@ namespace Database.Migrations
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RegionId = table.Column<int>(type: "int", nullable: false),
                     PrimaryTypeId = table.Column<int>(type: "int", nullable: false),
-                    SecondaryTypeId = table.Column<int>(type: "int", nullable: false)
+                    SecondaryTypeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,8 +59,7 @@ namespace Database.Migrations
                         name: "FK_Pokemons_PokemonTypes_SecondaryTypeId",
                         column: x => x.SecondaryTypeId,
                         principalTable: "PokemonTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pokemons_Regions_RegionId",
                         column: x => x.RegionId,
@@ -68,6 +67,11 @@ namespace Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pokemons_PrimaryTypeId",
+                table: "Pokemons",
+                column: "PrimaryTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pokemons_RegionId",
@@ -78,11 +82,6 @@ namespace Database.Migrations
                 name: "IX_Pokemons_SecondaryTypeId",
                 table: "Pokemons",
                 column: "SecondaryTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pokemons_PrimaryTypeId",
-                table: "Pokemons",
-                column: "PrimaryTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

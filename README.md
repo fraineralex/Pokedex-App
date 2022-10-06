@@ -11,6 +11,7 @@ Pokedex App is a web application developed in ASP.NET that allows us to perform 
   - css
     - Bootstrap
   - js
+  - ASP.NET Razor
 
 
 - Backend

@@ -6,13 +6,13 @@
 <section class="py-3 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Administrador de Pokemones</h1>
+            <h1 class="fw-bold">Administrador de Pokemones</h1>
             <p class="lead text-muted">
                 Si no encuentras tu pokemon favorito crea uno con las
                 caracteristicas que quieras, deja que fluya tu imaginación.
             </p>
             <p>
-                <a asp-controller="Adminpokemons" asp-action="Create" class="btn btn-primary my-2">Crea un nuevo pokemon</a>
+                <a asp-controller="Adminpokemons" asp-action="Create" class="btn btn-lg btn-primary my-2">Crea un nuevo pokemon</a>
             </p>
         </div>
     </div>
@@ -30,7 +30,7 @@
         @foreach (var pokemon in Model.PokemonList)
         {
             <div class="col-4 mb-4">
-                <div class="card card-light bg-opacity-75 shadow-sm">
+                <div class="card bg-dark shadow text-light">
                     <img src="@pokemon.ImagePath" class="card-img-top bd-placeholder-img img-pokemon" alt="pokemon img" />
                     <div class="card-body">
                         <h2 class="card-title text-center fw-bold mb-3">@pokemon.Name</h2>

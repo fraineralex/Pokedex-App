@@ -7,13 +7,13 @@
 <section class="py-3 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Administrador de Tipos de Pokemones</h1>
+            <h1 class="fw-bold">Administrador de Tipos de Pokemones</h1>
             <p class="lead text-muted">
                 Aquí te mostramos un listado con todas los tipos de nuestros pokemones,
                 puedes consultar todos los que quieras o incluso crear uno propia.
             </p>
             <p>
-                <a asp-controller="AdminPokemonTypes" asp-action="Create" class="btn btn-primary my-2">Crear tipo de pokemon</a>
+                <a asp-controller="AdminPokemonTypes" asp-action="Create" class="btn btn-lg btn-primary my-2">Crear tipo de pokemon</a>
             </p>
         </div>
     </div>
@@ -23,15 +23,15 @@
 
     @if (Model == null || Model.Count == 0)
     {
-        <h1 class="text-center fw-light mb-3 mt-3">Lo sentimos :(</h1>
-        <h5 class="text-center lead text-muted">No se ha encontrado ningun tipo de pokemon.</h5>
+        <h1 class="text-center fw-light mb-3 mt-5">Lo sentimos :(</h1>
+        <h4 class="text-center fw-light text-muted mb-5 pb-5">No se ha encontrado ningun tipo de pokemon.</h4>
     }
     else
     {
         @foreach (PokemonTypeViewModel pokemonType in Model)
         {
             <div class="col mb-4">
-                <div class="card bg-light" style="width: 18rem; height: auto">
+                <div class="card bg-dark text-light" style="width: 18rem; height: auto">
                     <div class="card-body">
                         <h5 class="card-title mb-2">@pokemonType.Name</h5>
                         <a asp-controller="AdminPokemonTypes" asp-action="Delete" asp-route-id="@pokemonType.Id" class="btn btn-danger float-end">

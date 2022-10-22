@@ -69,14 +69,8 @@ Tools/NuGet packages manager/Package management console
 Update-Database
 ```
 
-- Now run the project and copy and past this path in your brouser 
-```cmd
-127.0.0.1:7110
-```
-Or
-```cmd
-https://localhost:7110
-```
+- Now run the project and the application will run on your default browser.
+
 <br><br>
 ## Developer
 - Frainer Alexander -> [Github](https://github.com/Fraineralex) 
